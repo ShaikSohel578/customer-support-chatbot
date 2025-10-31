@@ -1,0 +1,71 @@
+# ----------------------------------------------------------
+# AI Sales Chatbot
+# Author: Sohel
+# ----------------------------------------------------------
+# This simple chatbot can answer basic business questions
+# related to sales, profit, customers, and forecasting.
+# ----------------------------------------------------------
+
+import random
+
+# Predefined responses
+responses = {
+    "greeting": [
+        "Hello! 👋 How can I help you today?",
+        "Hi there! What sales info are you looking for?",
+        "Hey! I'm your AI sales assistant. Ask me anything about our data."
+    ],
+    "sales": [
+        "Our sales have been growing steadily month over month 📈.",
+        "Sales this quarter look promising with an upward trend.",
+        "The sales forecast predicts good performance in the upcoming months."
+    ],
+    "profit": [
+        "Profits have increased due to better discounts and higher volume 💰.",
+        "Our net profit margin is stable and improving slightly.",
+        "The profit trend aligns well with our sales forecast."
+    ],
+    "forecast": [
+        "The latest AI model predicts strong sales growth next quarter 🚀.",
+        "According to the NeuralProphet forecast, sales are expected to rise by around 10%.",
+        "Our predictive model shows consistent seasonality and upward trends."
+    ],
+    "goodbye": [
+        "Goodbye! 👋 Have a productive day!",
+        "See you soon! Keep boosting those sales!",
+        "Take care! 😊"
+    ],
+    "default": [
+        "I'm not sure about that, but I can tell you about sales, profit, or forecasts!",
+        "Could you please rephrase that?",
+        "Hmm, I didn't catch that. Maybe ask about sales, profit, or forecast?"
+    ]
+}
+
+# Function to get chatbot response
+def chatbot_response(user_input):
+    user_input = user_input.lower()
+
+    if any(word in user_input for word in ["hi", "hello", "hey"]):
+        return random.choice(responses["greeting"])
+    elif "sale" in user_input:
+        return random.choice(responses["sales"])
+    elif "profit" in user_input:
+        return random.choice(responses["profit"])
+    elif "forecast" in user_input or "future" in user_input:
+        return random.choice(responses["forecast"])
+    elif any(word in user_input for word in ["bye", "exit", "quit"]):
+        return random.choice(responses["goodbye"])
+    else:
+        return random.choice(responses["default"])
+
+
+# Chatbot loop
+if __name__ == "__main__":
+    print("🤖 AI Sales Chatbot initialized. Type 'bye' to exit.")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ["bye", "exit", "quit"]:
+            print("Bot:", random.choice(responses["goodbye"]))
+            break
+        print("Bot:", chatbot_response(user_input))
